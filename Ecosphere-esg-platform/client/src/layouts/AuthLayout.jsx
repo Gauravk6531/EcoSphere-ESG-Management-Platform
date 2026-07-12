@@ -1,11 +1,10 @@
 import React from 'react';
 import { Outlet, Navigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const AuthLayout = () => {
-  // Simple check for authentication (placeholder logic to be replaced by JWT context)
-  const isAuthenticated = false;
-
-  if (isAuthenticated) {
+  const { user } = useAuth();
+  if (user) {
     return <Navigate to="/" replace />;
   }
 
