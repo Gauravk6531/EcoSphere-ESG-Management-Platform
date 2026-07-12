@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+
+# Node
+node_modules/
+dist/
+.npm-cache/
+uploads/
+!server/uploads/
+!server/uploads/.gitkeep
+
+# OS
+.DS_Store
