@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ecosphere_user
+      POSTGRES_PASSWORD: ecosphere_pass
+      POSTGRES_DB: ecosphere_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ecosphere_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ecosphere_user -d ecosphere_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql+psycopg2://ecosphere_user:ecosphere_pass@db:5432/ecosphere_db
+      CORS_ORIGINS: http://localhost:5173
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      VITE_API_URL: http://localhost:8000/api
+    ports:
+      - "5173:5173"
+
+volumes:
+  ecosphere_pgdata:
