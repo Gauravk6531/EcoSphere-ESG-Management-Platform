@@ -82,7 +82,7 @@ const MasterData = () => {
               </thead>
               <tbody className="divide-y divide-slate-100 text-slate-700">
                 {loading ? <tr><td colSpan="4" className="px-6 py-4 text-center">Loading...</td></tr> : 
-                 factors.length === 0 ? <tr><td colSpan="4" className="px-6 py-4 text-center">No factors found. Click 'Add New' to create one.</td></tr> :
+                 factors.length === 0 ? <tr><td colSpan="4" className="px-6 py-4 text-center">No factors found. Click &apos;Add New&apos; to create one.</td></tr> :
                  factors.map(f => (
                   <tr key={f._id} className="hover:bg-slate-50">
                     <td className="px-6 py-3 font-medium">{f.name}</td>

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import {
-  LayoutDashboard, Leaf, Users, Building2, Zap, Package, Target,
+  LayoutDashboard, Leaf, Users, Building2, Target,
   Activity, BarChart2, FileText, ChevronDown, ChevronRight,
-  Bell, Menu, X, LogOut, Settings, User, ShieldCheck, Award
+  Bell, Menu, X, LogOut, Settings, ShieldCheck, Award
 } from 'lucide-react';
 
 const DashboardLayout = () => {

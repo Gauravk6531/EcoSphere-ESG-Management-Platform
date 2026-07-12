@@ -86,8 +86,16 @@ export const getAudits = async (req, res) => {
 
 export const createAudit = async (req, res) => {
   try {
-    const audit = await Audit.create(req.body);
-    res.status(201).json({ status: 'success', data: audit });
+    const { title, auditor, department_id, date, findings_summary } = req.body;
+    const audit = await Audit.create({
+      title,
+      auditor,
+      department: department_id || null,
+      date: date || new Date(),
+      findings_summary
+    });
+    const populated = await Audit.findById(audit._id).populate('department', 'name');
+    res.status(201).json({ status: 'success', data: populated });
   } catch (err) {
     res.status(500).json({ status: 'error', message: err.message });
   }

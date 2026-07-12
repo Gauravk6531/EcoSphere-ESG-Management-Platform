@@ -126,8 +126,18 @@ export const getChallenges = async (req, res) => {
 
 export const createChallenge = async (req, res) => {
   try {
-    const challenge = await Challenge.create(req.body);
-    res.status(201).json({ status: 'success', data: challenge });
+    const { title, category_id, description, xp, difficulty, evidence_required, deadline } = req.body;
+    const challenge = await Challenge.create({
+      title,
+      category: category_id || null,
+      description,
+      xp: Number(xp || 0),
+      difficulty,
+      evidence_required: Boolean(evidence_required),
+      deadline: deadline || null
+    });
+    const populated = await Challenge.findById(challenge._id).populate('category', 'name');
+    res.status(201).json({ status: 'success', data: populated });
   } catch (err) {
     res.status(500).json({ status: 'error', message: err.message });
   }

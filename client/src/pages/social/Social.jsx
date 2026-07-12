@@ -16,7 +16,6 @@ import {
   updateTrainingCompletion,
   deleteTrainingCompletion,
 } from '../../services/index.js';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Activity, UserCheck, Users, Award } from 'lucide-react';
 
 const TABS = [

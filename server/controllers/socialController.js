@@ -7,13 +7,26 @@ import Category from '../models/Category.js';
 
 export const listActivities = async (req, res) => {
   const filter = req.query.department_id ? { department: req.query.department_id } : {};
-  const activities = await CSRActivity.find(filter).populate('category', 'name');
+  const activities = await CSRActivity.find(filter).populate('category', 'name').populate('department', 'name');
   res.status(200).json({ status: 'success', data: activities });
 };
 
 export const createActivity = async (req, res) => {
-  const activity = await CSRActivity.create(req.body);
-  res.status(201).json({ status: 'success', data: activity });
+  try {
+    const { title, category_id, department_id, date, description, evidence_required } = req.body;
+    const activity = await CSRActivity.create({
+      title,
+      category: category_id || null,
+      department: department_id || null,
+      date: date || new Date(),
+      description,
+      evidence_required: Boolean(evidence_required)
+    });
+    const populated = await CSRActivity.findById(activity._id).populate('category', 'name').populate('department', 'name');
+    res.status(201).json({ status: 'success', data: populated });
+  } catch (err) {
+    res.status(500).json({ status: 'error', message: err.message });
+  }
 };
 
 export const deleteActivity = async (req, res) => {

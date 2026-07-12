@@ -14,6 +14,8 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: [true, 'Password is required'], minlength: 6, select: false },
   role: { type: mongoose.Schema.Types.ObjectId, ref: 'Role', required: true },
   department: { type: mongoose.Schema.Types.ObjectId, ref: 'Department', default: null },
+  xp_total: { type: Number, default: 0 },
+  points_balance: { type: Number, default: 0 },
 }, { timestamps: true });
 
 userSchema.pre('save', async function (next) {

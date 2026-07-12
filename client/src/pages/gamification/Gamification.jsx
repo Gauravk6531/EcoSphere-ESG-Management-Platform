@@ -321,7 +321,7 @@ const Gamification = () => {
                   <label className="space-y-2 text-sm text-slate-700">
                     Comparator
                     <select value={badgeForm.unlock_comparator} onChange={(e) => setBadgeForm({ ...badgeForm, unlock_comparator: e.target.value })} className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 outline-none focus:border-emerald-500">
-                      <option value=">=">>=</option>
+                      <option value=">=">&gt;=</option>
                       <option value=">">&gt;</option>
                       <option value="==">=</option>
                     </select>

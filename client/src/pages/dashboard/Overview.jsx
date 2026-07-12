@@ -75,7 +75,7 @@ const Overview = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
         <div>
           <h1 className="text-2xl font-bold text-slate-800">Welcome back, {user?.name}</h1>
-          <p className="text-slate-500 mt-1">Here is a high-level summary of your organization's ESG performance.</p>
+          <p className="text-slate-500 mt-1">Here is a high-level summary of your organization&apos;s ESG performance.</p>
         </div>
         <div className="flex gap-3">
           <Link to="/environmental/carbon-transactions" className="px-4 py-2 bg-emerald-600 text-white rounded-xl text-sm font-semibold hover:bg-emerald-700 transition-colors shadow-sm flex items-center gap-2">
